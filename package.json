@@ -1,0 +1,14 @@
+{
+  "name": "novakid2calendar",
+  "version": "1.0.0",
+  "description": "Generates an ICS file containing all Novakids lessons, suitable for importing into any calendar application.",
+  "main": "app.js",
+  "type": "module",
+  "author": "Daniel Erez",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.301.0",
+    "@aws-sdk/lib-storage": "^3.301.0",
+    "moment": "^2.29.4",
+    "puppeteer": "^19.7.5"
+  }
+}
