@@ -14,8 +14,10 @@ async function getAuth_key() {
         );
         const page = await browser.newPage();
         await page.goto('https://school.novakidschool.com/signin');
+        await page.waitForSelector('.signin-form');
+        await page.click('.bigform .signin-form__btn');
         await page.waitForSelector('.bigform form');
-        await page.click('.bigform form>.links>a');
+        await page.click('.signin-form form>.links>a[data-test="login-page-link_with_password"]');
         await page.type('input#email', config.novakids.user);
         await page.type('input#password', config.novakids.pass);
         await page.click('.bigform form>button[type="submit"]');
