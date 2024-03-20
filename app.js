@@ -10,17 +10,16 @@ import config from './config.js';
 async function getAuth_key() {
     return new Promise(async (resolve, reject) => {
         const browser = await puppeteer.launch(
-            // { headless: false }
+            // { headless: false, }
         );
         const page = await browser.newPage();
-        await page.goto('https://school.novakidschool.com/signin');
-        await page.waitForSelector('.signin-form');
-        await page.click('.bigform .signin-form__btn');
-        await page.waitForSelector('.bigform form');
-        await page.click('.signin-form form>.links>a[data-test="login-page-link_with_password"]');
-        await page.type('input#email', config.novakids.user);
-        await page.type('input#password', config.novakids.pass);
-        await page.click('.bigform form>button[type="submit"]');
+        page.setViewport({ width: 500, height: 1500 });
+        await page.goto('https://school.novakidschool.com/signin/form/email');
+        await page.waitForSelector('button.MuiTypography-inherit');
+        await page.click('button.MuiTypography-inherit');
+        await page.type('input[name="email"]', config.novakids.user);
+        await page.type('input[name="password"]', config.novakids.pass);
+        await page.click('button[type="submit"]');
         page.on('request', req => {
             const auth_key = req.headers()['x-novakid-auth'];
             if (auth_key) {
